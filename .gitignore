@@ -1,0 +1,3 @@
+# put files here you want git to ignore
+.vscode
+build
