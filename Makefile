@@ -9,16 +9,21 @@ INCLUDES := -I$(SRC_DIR)
 # let make search for all .c files
 C_FILES := $(wildcard $(SRC_DIR)/*.c)
 
-# store the executable inside the build dir
-O_FILE := $(BUILD_DIR)/$(PROG)
+# store all object files
+OBJECTS := $(addprefix $(BUILD_DIR)/, $(notdir $(C_FILES:.c=.o)))
+vpath %.c $(dir $(C_FILES))
 
 CC := gcc
 
 C_FLAGS := -g -O0 -Wall
 
+# compile the .o files
+$(BUILD_DIR)/%.o : $(SRC_DIR)/%.c | $(BUILD_DIR)
+	gcc -c $(C_FLAGS) $< -o $@
+
 # generate the exe
-$(O_FILE) : $(C_FILES) | $(BUILD_DIR)
-	$(CC) $(C_FLAGS) $(C_FILES) -o $@
+$(BUILD_DIR)/$(PROG) : $(OBJECTS)
+	$(CC) $(OBJECTS) -o $@
 
 # create the build dir if its not created yet
 $(BUILD_DIR):
@@ -26,13 +31,14 @@ $(BUILD_DIR):
 
 .DEFAULT_GOAL = all
 
-all : $(O_FILE)
+all : $(BUILD_DIR)/$(PROG)
 
-run : $(O_FILE)
-	$<
+# run exe; varible day and data should be created in terminal
+run : $(BUILD_DIR)/$(PROG)
+	$< $(day) $(data)
 
 clean:
-	rm $(O_FILE)
+	rm $(BUILD_DIR)/$(PROG)
 
 fullclean:
 	rm -rf $(BUILD_DIR)
