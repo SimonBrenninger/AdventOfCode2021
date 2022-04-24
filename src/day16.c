@@ -1,13 +1,13 @@
 #include "header.h"
 
-static void day16_part1(FILE *fp);
-static void day16_part2(FILE *fp);
+static void day16_part1();
+static void day16_part2();
 
 void day16(FILE *fp)
 {
-    day16_part1(fp);
-    day16_part2(fp);
+    day16_part1();
+    day16_part2();
 }
 
-static void day16_part1(FILE *fp) {}
-static void day16_part2(FILE *fp) {}
+static void day16_part1() {}
+static void day16_part2() {}

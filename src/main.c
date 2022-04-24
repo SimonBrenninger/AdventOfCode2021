@@ -31,7 +31,6 @@ int main(int argc, char **argv)
         }
     }
 
-    printf("\nSolving day %d with data from '%s' directory...\n", day, data_dir);
 
     // concat filename and data_path
     sprintf(data_path, "%s/day%d.txt", data_dir, day);
@@ -42,6 +41,7 @@ int main(int argc, char **argv)
     // open file and check if file exists
     if(file_open(data_path, &fp))
     {
+        printf("\nSolving day %d with data from '%s' directory...\n", day, data_dir);
         // solve the correct day
         (*fun_ptr_arr[day-1])(fp);
     }
