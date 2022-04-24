@@ -15,7 +15,7 @@ vpath %.c $(dir $(C_FILES))
 
 CC := gcc
 
-C_FLAGS := -g -O0 -Wall
+C_FLAGS := -g3 -O0 -Wall
 
 # compile the .o files
 $(BUILD_DIR)/%.o : $(SRC_DIR)/%.c | $(BUILD_DIR)
