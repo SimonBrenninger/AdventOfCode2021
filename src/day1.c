@@ -7,7 +7,7 @@ void day1(FILE *fp)
 {
     int num_elements, *arr = NULL;
     // get puzzle input
-    num_elements = fget_numbers(&arr, EOF, fp);
+    fget_numbers(&arr, EOF, &num_elements, fp);
     fclose(fp);
 
     // solve both puzzles

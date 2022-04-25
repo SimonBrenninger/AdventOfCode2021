@@ -40,8 +40,9 @@ int fget_dec_number(int *number, FILE *fp);
 
 // gets numbers from file until 'end' character is reached
 // arr: pointer to number array; end: end-character
-// return: number of elements inserted
-int fget_numbers(int **arr, char end, FILE *fp);
+// num_elements: returns number of elements read
+// return: last character read (either end or EOF)
+int fget_numbers(int **arr, char end, int *num_elements, FILE *fp);
 
 /*      functions for each day          */
 void day1(FILE *fp);

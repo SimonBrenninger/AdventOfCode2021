@@ -55,7 +55,7 @@ static void day2_part1(FILE *fp)
     {
         if(ret == ERR_UKNOWN_DIR)
         {
-            printf("unknown string in data input; aborting...\n");
+            printf("unknown string in puzzle data! aborting...\n");
             return;
         }
         switch(dir)
@@ -92,7 +92,7 @@ static void day2_part2(FILE *fp)
     {
         if(ret == ERR_UKNOWN_DIR)
         {
-            printf("unknown string in data input; aborting...\n");
+            printf("unknown string in puzzle data! aborting...\n");
             return;
         }
         switch(dir)

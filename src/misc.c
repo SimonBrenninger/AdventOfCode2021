@@ -56,26 +56,27 @@ int fget_dec_number(int *number, FILE *fp)
     return next_char;
 }
 
-int fget_numbers(int **arr, char end, FILE *fp)
+int fget_numbers(int **arr, char end, int *num_elements, FILE *fp)
 {
     char c;
-    int allocd = 0, num_elements = 0;
+    int allocd = 0;
+    *num_elements = 0;
 
     do
     {
-        if(num_elements == allocd)  // alloc more memory if needed
+        if(*num_elements == allocd)  // alloc more memory if needed
         {
             allocd += ALLOC_CHUNK_SIZE;
             *arr = realloc(*arr, allocd * sizeof(int));
             if(*arr == NULL)
                 printf("error reallocating memory!\n");
         }
-        c = fget_dec_number(&(*arr)[num_elements++], fp);
+        c = fget_dec_number(&(*arr)[*num_elements++], fp);
     }
-    while (c != end);
-    *arr = realloc(*arr, num_elements * sizeof(int));
+    while (c != end && c != EOF);
+    *arr = realloc(*arr, *num_elements * sizeof(int));
     if(*arr == NULL)
         printf("error reallocating memory!\n");
 
-    return num_elements;
+    return c;
 }
