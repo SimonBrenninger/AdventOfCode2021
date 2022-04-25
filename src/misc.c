@@ -50,7 +50,8 @@ int fget_dec_number(int *number, FILE *fp)
     // read until next character is not a digit anymore
     while(is_dec_digit(next_char))
     {
-        *number = *number * 10 + next_char - '0';
+        *number *= 10;
+        *number += (next_char - '0');
         next_char = fgetc(fp);
     }
     return next_char;
@@ -71,7 +72,7 @@ int fget_numbers(int **arr, char end, int *num_elements, FILE *fp)
             if(*arr == NULL)
                 printf("error reallocating memory!\n");
         }
-        c = fget_dec_number(&(*arr)[*num_elements++], fp);
+        c = fget_dec_number(&(*arr)[(*num_elements)++], fp);
     }
     while (c != end && c != EOF);
     *arr = realloc(*arr, *num_elements * sizeof(int));
