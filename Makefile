@@ -33,9 +33,13 @@ $(BUILD_DIR):
 
 all : $(BUILD_DIR)/$(PROG)
 
-# run exe; varible day and data should be created in terminal
+# run exe; varible 'day' and 'data' should be created in terminal
+# eg: "make run day=1 data=test"
 run : $(BUILD_DIR)/$(PROG)
 	$< $(day) $(data)
+
+debug:
+	gdb $(BUILD_DIR)/$(PROG)
 
 clean:
 	rm $(BUILD_DIR)/$(PROG)
